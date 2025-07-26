@@ -589,10 +589,25 @@ function sqrt(uint256 x) pure returns (uint256 result) {
     // $$
     //
     // Consequently, $2^{log_2(x) /2} is a good first approximation of sqrt(x) with at least one correct bit.
-    unchecked {
-        // ideally, we should use arithmetic operators, but solc is not smart enough to optimize `2**(msb(x)/2)`
-        /// forge-lint: disable-next-line(incorrect-shift)
-        result = 1 << (msb(x) >> 1);
+    assembly ("memory-safe") {
+        // 2^128
+        result := shl(7, lt(0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF, x))
+        // 2^64
+        result := or(result, shl(6, lt(0xFFFFFFFFFFFFFFFF, shr(result, x))))
+        // 2^32
+        result := or(result, shl(5, lt(0xFFFFFFFF, shr(result, x))))
+        // 2^16
+        result := or(result, shl(4, lt(0xFFFF, shr(result, x))))
+        // 2^8
+        result := or(result, shl(3, lt(0xFF, shr(result, x))))
+        // 2^4
+        result := or(result, shl(2, lt(0xf, shr(result, x))))
+        // 2^2
+        result := or(result, shl(1, lt(0x3, shr(result, x))))
+        // 2^1
+        result := or(result, lt(0x1, shr(result, x)))
+
+        result := shl(shr(1, result), 1)
     }
 
     // At this point, `result` is an estimation with at least one bit of precision. We know the true value has at
