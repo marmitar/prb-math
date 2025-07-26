@@ -603,19 +603,17 @@ function sqrt(uint256 x) pure returns (uint256 result) {
     // most 128 bits, since it is the square root of a uint256. Newton's method converges quadratically (precision
     // doubles at every iteration). We thus need at most 7 iteration to turn our partial result with one bit of
     // precision into the expected uint128 result.
-    unchecked {
-        result = (result + x / result) >> 1;
-        result = (result + x / result) >> 1;
-        result = (result + x / result) >> 1;
-        result = (result + x / result) >> 1;
-        result = (result + x / result) >> 1;
-        result = (result + x / result) >> 1;
-        result = (result + x / result) >> 1;
+    assembly ("memory-safe") {
+        result := shr(1, add(result, div(x, result)))
+        result := shr(1, add(result, div(x, result)))
+        result := shr(1, add(result, div(x, result)))
+        result := shr(1, add(result, div(x, result)))
+        result := shr(1, add(result, div(x, result)))
+        result := shr(1, add(result, div(x, result)))
+        result := shr(1, add(result, div(x, result)))
 
         // If x is not a perfect square, round the result toward zero.
-        assembly ("memory-safe") {
-            result := sub(result, gt(result, div(x, result)))
-        }
+        result := sub(result, gt(result, div(x, result)))
     }
 }
 
