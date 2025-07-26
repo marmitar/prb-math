@@ -5,7 +5,6 @@ out
 
 # files
 *.env
-*.log
 .DS_Store
 .pnp.*
 package-lock.json

@@ -673,3 +673,15 @@ function sqrt(uint256 x) pure returns (uint256 result) {
         }
     }
 }
+
+contract Msb {
+    function run(uint256 x) external pure returns (uint256 result) {
+        return msb(x);
+    }
+}
+
+contract Sqrt {
+    function run(uint256 x) external pure returns (uint256 result) {
+        return sqrt(x);
+    }
+}

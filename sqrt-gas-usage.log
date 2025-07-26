@@ -1,0 +1,54 @@
+No files changed, compilation skipped
+Script ran successfully.
+Gas used: 553710351
+
+== Logs ==
+  ===== all 8-bit numbers =====
+  total gas used = 173024 / 256
+  minimum = 74, 638, ...
+  quartiles = ..., 676.7, ..., 679.0, ..., 687.0, ...
+  average = 675.8 ± 38.8
+  maximum = ..., 687, 687
+  
+  ===== all 16-bit numbers =====
+  total gas used = 46011840 / 65536
+  minimum = 74, 638, ...
+  quartiles = ..., 700.7, ..., 703.0, ..., 711.0, ...
+  average = 702.0 ± 10.1
+  maximum = ..., 711, 711
+  
+  ===== all powers of two =====
+  total gas used = 185424 / 256
+  minimum = 638, 646, ...
+  quartiles = ..., 703.0, ..., 722.5, ..., 742.0, ...
+  average = 724.3 ± 30.8
+  maximum = ..., 807, 807
+  
+  ===== almost powers of two =====
+  total gas used = 184155 / 256
+  minimum = 74, 646, ...
+  quartiles = ..., 703.0, ..., 718.0, ..., 742.0, ...
+  average = 719.3 ± 50.7
+  maximum = ..., 790, 807
+  
+  ===== randomized values =====
+  total gas used = 209220512 / 262144
+  minimum = 734, 734, ...
+  quartiles = ..., 799.0, ..., 799.0, ..., 807.0, ...
+  average = 798.1 ± 9.8
+  maximum = ..., 807, 807
+  
+  ===== uint16 * 1e18 =====
+  total gas used = 46071371 / 65535
+  minimum = 662, 662, ...
+  quartiles = ..., 703.0, ..., 703.0, ..., 711.0, ...
+  average = 703.0 ± 8.3
+  maximum = ..., 759, 759
+  
+  ===== uint16 * 1e18 * 1e18 =====
+  total gas used = 45938938 / 65535
+  minimum = 662, 662, ...
+  quartiles = ..., 694.0, ..., 703.0, ..., 711.0, ...
+  average = 700.9 ± 11.7
+  maximum = ..., 783, 783
+  

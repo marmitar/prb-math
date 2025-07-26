@@ -1,0 +1,8 @@
+#!/usr/bin/bash
+set -e
+
+forge build --extra-output-files evm.assembly
+cp out/Common.sol/*.asm zasm/
+forge snapshot --snap z-gas-snapshot.log
+forge script script/MsbCompareGas.s.sol > msb-gas-usage.log
+forge script script/SqrtGasUsage.s.sol > sqrt-gas-usage.log
