@@ -613,9 +613,8 @@ function sqrt(uint256 x) pure returns (uint256 result) {
         result = (result + x / result) >> 1;
 
         // If x is not a perfect square, round the result toward zero.
-        uint256 roundedResult = x / result;
-        if (result >= roundedResult) {
-            result = roundedResult;
+        assembly ("memory-safe") {
+            result := sub(result, gt(result, div(x, result)))
         }
     }
 }

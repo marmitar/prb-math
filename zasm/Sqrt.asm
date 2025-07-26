@@ -1,4 +1,4 @@
-    /* "src/Common.sol":24590:24706  contract Sqrt {... */
+    /* "src/Common.sol":24568:24684  contract Sqrt {... */
   mstore(0x40, 0x80)
   callvalue
   dup1
@@ -18,7 +18,7 @@ tag_1:
 stop
 
 sub_0: assembly {
-        /* "src/Common.sol":24590:24706  contract Sqrt {... */
+        /* "src/Common.sol":24568:24684  contract Sqrt {... */
       mstore(0x40, 0x80)
       callvalue
       dup1
@@ -37,7 +37,7 @@ sub_0: assembly {
       jumpi
     tag_2:
       revert(0x00, 0x00)
-        /* "src/Common.sol":24610:24704  function run(uint256 x) external pure returns (uint256 result) {... */
+        /* "src/Common.sol":24588:24682  function run(uint256 x) external pure returns (uint256 result) {... */
     tag_3:
       tag_4
       tag_5
@@ -58,7 +58,7 @@ sub_0: assembly {
       0x20
         /* "#utility.yul":318:336   */
       add
-        /* "src/Common.sol":24610:24704  function run(uint256 x) external pure returns (uint256 result) {... */
+        /* "src/Common.sol":24588:24682  function run(uint256 x) external pure returns (uint256 result) {... */
       mload(0x40)
       dup1
       swap2
@@ -66,25 +66,25 @@ sub_0: assembly {
       swap1
       return
     tag_7:
-        /* "src/Common.sol":24657:24671  uint256 result */
+        /* "src/Common.sol":24635:24649  uint256 result */
       0x00
-        /* "src/Common.sol":24690:24697  sqrt(x) */
+        /* "src/Common.sol":24668:24675  sqrt(x) */
       tag_11
-        /* "src/Common.sol":24695:24696  x */
+        /* "src/Common.sol":24673:24674  x */
       dup3
-        /* "src/Common.sol":24690:24694  sqrt */
+        /* "src/Common.sol":24668:24672  sqrt */
       tag_12
-        /* "src/Common.sol":24690:24697  sqrt(x) */
+        /* "src/Common.sol":24668:24675  sqrt(x) */
       jump	// in
     tag_11:
-        /* "src/Common.sol":24683:24697  return sqrt(x) */
+        /* "src/Common.sol":24661:24675  return sqrt(x) */
       swap3
-        /* "src/Common.sol":24610:24704  function run(uint256 x) external pure returns (uint256 result) {... */
+        /* "src/Common.sol":24588:24682  function run(uint256 x) external pure returns (uint256 result) {... */
       swap2
       pop
       pop
       jump	// out
-        /* "src/Common.sol":22487:24472  function sqrt(uint256 x) pure returns (uint256 result) {... */
+        /* "src/Common.sol":22487:24450  function sqrt(uint256 x) pure returns (uint256 result) {... */
     tag_12:
         /* "src/Common.sol":22526:22540  uint256 result */
       0x00
@@ -101,7 +101,7 @@ sub_0: assembly {
         /* "src/Common.sol":22577:22578  0 */
       0x00
       swap2
-        /* "src/Common.sol":22487:24472  function sqrt(uint256 x) pure returns (uint256 result) {... */
+        /* "src/Common.sol":22487:24450  function sqrt(uint256 x) pure returns (uint256 result) {... */
       swap1
       pop
       jump	// out
@@ -382,56 +382,27 @@ sub_0: assembly {
       jump	// in
     tag_31:
       div
-        /* "src/Common.sol":24237:24243  result */
-      dup3
         /* "src/Common.sol":24237:24256  result + x / result */
+      swap2
+      swap1
+      swap2
       add
         /* "src/Common.sol":24236:24262  (result + x / result) >> 1 */
       swap1
       shr
-        /* "src/Common.sol":24227:24262  result = (result + x / result) >> 1 */
+        /* "src/Common.sol":24416:24430  div(x, result) */
       swap1
-      pop
-        /* "src/Common.sol":24344:24365  uint256 roundedResult */
-      0x00
-        /* "src/Common.sol":24372:24378  result */
       dup2
-        /* "src/Common.sol":24368:24369  x */
-      dup4
-        /* "src/Common.sol":24368:24378  x / result */
-      dup2
-      tag_33
-      jumpi
-      tag_33
-      tag_19
-      jump	// in
-    tag_33:
+      swap1
       div
-        /* "src/Common.sol":24344:24378  uint256 roundedResult = x / result */
+        /* "src/Common.sol":24405:24431  gt(result, div(x, result)) */
+      dup2
+      gt
+        /* "src/Common.sol":24393:24432  sub(result, gt(result, div(x, result))) */
       swap1
-      pop
-        /* "src/Common.sol":24402:24415  roundedResult */
-      dup1
-        /* "src/Common.sol":24392:24398  result */
-      dup3
-        /* "src/Common.sol":24392:24415  result >= roundedResult */
-      lt
-        /* "src/Common.sol":24388:24464  if (result >= roundedResult) {... */
-      tag_34
-      jumpi
-        /* "src/Common.sol":24440:24453  roundedResult */
-      dup1
-        /* "src/Common.sol":24431:24453  result = roundedResult */
-      swap2
-      pop
-        /* "src/Common.sol":24388:24464  if (result >= roundedResult) {... */
-    tag_34:
-        /* "src/Common.sol":23937:24470  unchecked {... */
-      pop
-        /* "src/Common.sol":22487:24472  function sqrt(uint256 x) pure returns (uint256 result) {... */
-      swap2
+      sub
       swap1
-      pop
+        /* "src/Common.sol":22487:24450  function sqrt(uint256 x) pure returns (uint256 result) {... */
       jump	// out
         /* "#utility.yul":14:194   */
     tag_6:
@@ -449,7 +420,7 @@ sub_0: assembly {
       slt
         /* "#utility.yul":94:146   */
       iszero
-      tag_38
+      tag_35
       jumpi
         /* "#utility.yul":142:143   */
       0x00
@@ -458,7 +429,7 @@ sub_0: assembly {
         /* "#utility.yul":132:144   */
       revert
         /* "#utility.yul":94:146   */
-    tag_38:
+    tag_35:
       pop
         /* "#utility.yul":165:188   */
       calldataload
@@ -488,5 +459,5 @@ sub_0: assembly {
         /* "#utility.yul":544:559   */
       revert
 
-    auxdata: 0xa264697066735822122092920af38d9b2684bde08d97a9ebb777675e77e4713b1cd966c85818fe80ad1964736f6c634300081e0033
+    auxdata: 0xa2646970667358221220be41c6b461daac62e53b7acf8b92195540da3dac266874e2730568a9560b670f64736f6c634300081e0033
 }
