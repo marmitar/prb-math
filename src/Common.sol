@@ -321,53 +321,23 @@ function exp2(uint256 x) pure returns (uint256 result) {
 /// @return result The index of the most significant bit as a uint256.
 /// @custom:smtchecker abstract-function-nondet
 function msb(uint256 x) pure returns (uint256 result) {
-    // 2^128
     assembly ("memory-safe") {
-        let factor := shl(7, gt(x, 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF))
-        x := shr(factor, x)
-        result := or(result, factor)
-    }
-    // 2^64
-    assembly ("memory-safe") {
-        let factor := shl(6, gt(x, 0xFFFFFFFFFFFFFFFF))
-        x := shr(factor, x)
-        result := or(result, factor)
-    }
-    // 2^32
-    assembly ("memory-safe") {
-        let factor := shl(5, gt(x, 0xFFFFFFFF))
-        x := shr(factor, x)
-        result := or(result, factor)
-    }
-    // 2^16
-    assembly ("memory-safe") {
-        let factor := shl(4, gt(x, 0xFFFF))
-        x := shr(factor, x)
-        result := or(result, factor)
-    }
-    // 2^8
-    assembly ("memory-safe") {
-        let factor := shl(3, gt(x, 0xFF))
-        x := shr(factor, x)
-        result := or(result, factor)
-    }
-    // 2^4
-    assembly ("memory-safe") {
-        let factor := shl(2, gt(x, 0xF))
-        x := shr(factor, x)
-        result := or(result, factor)
-    }
-    // 2^2
-    assembly ("memory-safe") {
-        let factor := shl(1, gt(x, 0x3))
-        x := shr(factor, x)
-        result := or(result, factor)
-    }
-    // 2^1
-    // No need to shift x any more.
-    assembly ("memory-safe") {
-        let factor := gt(x, 0x1)
-        result := or(result, factor)
+        // 2^128
+        result := shl(7, lt(0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF, x))
+        // 2^64
+        result := or(result, shl(6, lt(0xFFFFFFFFFFFFFFFF, shr(result, x))))
+        // 2^32
+        result := or(result, shl(5, lt(0xFFFFFFFF, shr(result, x))))
+        // 2^16
+        result := or(result, shl(4, lt(0xFFFF, shr(result, x))))
+        // 2^8
+        result := or(result, shl(3, lt(0xFF, shr(result, x))))
+        // 2^4
+        result := or(result, shl(2, lt(0xF, shr(result, x))))
+        // 2^2
+        result := or(result, shl(1, lt(0x3, shr(result, x))))
+        // 2^1
+        result := or(result, lt(0x1, shr(result, x)))
     }
 }
 

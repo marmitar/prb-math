@@ -1,4 +1,4 @@
-    /* "src/Common.sol":25086:25200  contract Msb {... */
+    /* "src/Common.sol":24474:24588  contract Msb {... */
   mstore(0x40, 0x80)
   callvalue
   dup1
@@ -18,7 +18,7 @@ tag_1:
 stop
 
 sub_0: assembly {
-        /* "src/Common.sol":25086:25200  contract Msb {... */
+        /* "src/Common.sol":24474:24588  contract Msb {... */
       mstore(0x40, 0x80)
       callvalue
       dup1
@@ -37,7 +37,7 @@ sub_0: assembly {
       jumpi
     tag_2:
       revert(0x00, 0x00)
-        /* "src/Common.sol":25105:25198  function run(uint256 x) external pure returns (uint256 result) {... */
+        /* "src/Common.sol":24493:24586  function run(uint256 x) external pure returns (uint256 result) {... */
     tag_3:
       tag_4
       tag_5
@@ -46,8 +46,113 @@ sub_0: assembly {
       tag_6
       jump	// in
     tag_5:
-      tag_7
-      jump	// in
+        /* "src/Common.sol":13316:13317  1 */
+      0x01
+        /* "src/Common.sol":12814:12848  0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF */
+      0xffffffffffffffffffffffffffffffff
+      dup3
+      gt
+        /* "src/Common.sol":12808:12809  7 */
+      0x07
+        /* "src/Common.sol":12804:12853  shl(7, lt(0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF, x)) */
+      shl
+        /* "src/Common.sol":12929:12943  shr(result, x) */
+      dup3
+      dup2
+      shr
+        /* "src/Common.sol":12909:12927  0xFFFFFFFFFFFFFFFF */
+      0xffffffffffffffff
+        /* "src/Common.sol":12906:12944  lt(0xFFFFFFFFFFFFFFFF, shr(result, x)) */
+      lt
+        /* "src/Common.sol":12903:12904  6 */
+      0x06
+        /* "src/Common.sol":12899:12945  shl(6, lt(0xFFFFFFFFFFFFFFFF, shr(result, x))) */
+      shl
+        /* "src/Common.sol":12888:12946  or(result, shl(6, lt(0xFFFFFFFFFFFFFFFF, shr(result, x)))) */
+      or
+        /* "src/Common.sol":13014:13028  shr(result, x) */
+      dup3
+      dup2
+      shr
+        /* "src/Common.sol":13002:13012  0xFFFFFFFF */
+      0xffffffff
+        /* "src/Common.sol":12999:13029  lt(0xFFFFFFFF, shr(result, x)) */
+      lt
+        /* "src/Common.sol":12996:12997  5 */
+      0x05
+        /* "src/Common.sol":12992:13030  shl(5, lt(0xFFFFFFFF, shr(result, x))) */
+      shl
+        /* "src/Common.sol":12981:13031  or(result, shl(5, lt(0xFFFFFFFF, shr(result, x)))) */
+      or
+        /* "src/Common.sol":13095:13109  shr(result, x) */
+      dup3
+      dup2
+      shr
+        /* "src/Common.sol":13087:13093  0xFFFF */
+      0xffff
+        /* "src/Common.sol":13084:13110  lt(0xFFFF, shr(result, x)) */
+      lt
+        /* "src/Common.sol":13081:13082  4 */
+      0x04
+        /* "src/Common.sol":13077:13111  shl(4, lt(0xFFFF, shr(result, x))) */
+      shl
+        /* "src/Common.sol":13066:13112  or(result, shl(4, lt(0xFFFF, shr(result, x)))) */
+      or
+        /* "src/Common.sol":13173:13187  shr(result, x) */
+      dup3
+      dup2
+      shr
+        /* "src/Common.sol":13167:13171  0xFF */
+      0xff
+        /* "src/Common.sol":13164:13188  lt(0xFF, shr(result, x)) */
+      lt
+        /* "src/Common.sol":13161:13162  3 */
+      0x03
+        /* "src/Common.sol":13157:13189  shl(3, lt(0xFF, shr(result, x))) */
+      swap1
+      dup2
+      shl
+        /* "src/Common.sol":13146:13190  or(result, shl(3, lt(0xFF, shr(result, x)))) */
+      swap1
+      swap2
+      or
+        /* "src/Common.sol":13250:13264  shr(result, x) */
+      dup4
+      dup2
+      shr
+        /* "src/Common.sol":13245:13248  0xF */
+      0x0f
+        /* "src/Common.sol":13242:13265  lt(0xF, shr(result, x)) */
+      lt
+        /* "src/Common.sol":13239:13240  2 */
+      0x02
+        /* "src/Common.sol":13235:13266  shl(2, lt(0xF, shr(result, x))) */
+      shl
+        /* "src/Common.sol":13224:13267  or(result, shl(2, lt(0xF, shr(result, x)))) */
+      or
+        /* "src/Common.sol":13327:13341  shr(result, x) */
+      dup4
+      dup2
+      shr
+        /* "src/Common.sol":13319:13342  lt(0x3, shr(result, x)) */
+      swap1
+      swap2
+      lt
+        /* "src/Common.sol":13312:13343  shl(1, lt(0x3, shr(result, x))) */
+      dup3
+      shl
+        /* "src/Common.sol":13301:13344  or(result, shl(1, lt(0x3, shr(result, x)))) */
+      or
+        /* "src/Common.sol":13397:13411  shr(result, x) */
+      swap2
+      dup3
+      shr
+      gt
+        /* "src/Common.sol":13378:13413  or(result, lt(0x1, shr(result, x))) */
+      or
+      swap1
+        /* "src/Common.sol":24493:24586  function run(uint256 x) external pure returns (uint256 result) {... */
+      jump
     tag_4:
       mload(0x40)
         /* "#utility.yul":345:370   */
@@ -58,156 +163,13 @@ sub_0: assembly {
       0x20
         /* "#utility.yul":318:336   */
       add
-        /* "src/Common.sol":25105:25198  function run(uint256 x) external pure returns (uint256 result) {... */
+        /* "src/Common.sol":24493:24586  function run(uint256 x) external pure returns (uint256 result) {... */
       mload(0x40)
       dup1
       swap2
       sub
       swap1
       return
-    tag_7:
-        /* "src/Common.sol":25152:25166  uint256 result */
-      0x00
-        /* "src/Common.sol":25185:25191  msb(x) */
-      tag_11
-        /* "src/Common.sol":25189:25190  x */
-      dup3
-        /* "src/Common.sol":13792:13793  1 */
-      0x01
-        /* "src/Common.sol":12817:12851  0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF */
-      0xffffffffffffffffffffffffffffffff
-        /* "src/Common.sol":12811:12852  gt(x, 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF) */
-      dup3
-      gt
-        /* "src/Common.sol":12808:12809  7 */
-      0x07
-        /* "src/Common.sol":12804:12853  shl(7, gt(x, 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF)) */
-      shl
-        /* "src/Common.sol":12867:12881  shr(factor, x) */
-      swap2
-      dup3
-      shr
-        /* "src/Common.sol":13003:13021  0xFFFFFFFFFFFFFFFF */
-      0xffffffffffffffff
-        /* "src/Common.sol":12997:13022  gt(x, 0xFFFFFFFFFFFFFFFF) */
-      dup2
-      gt
-        /* "src/Common.sol":12994:12995  6 */
-      0x06
-        /* "src/Common.sol":12990:13023  shl(6, gt(x, 0xFFFFFFFFFFFFFFFF)) */
-      shl
-        /* "src/Common.sol":13037:13051  shr(factor, x) */
-      swap1
-      dup2
-      shr
-        /* "src/Common.sol":13173:13183  0xFFFFFFFF */
-      0xffffffff
-        /* "src/Common.sol":13167:13184  gt(x, 0xFFFFFFFF) */
-      dup2
-      gt
-        /* "src/Common.sol":13164:13165  5 */
-      0x05
-        /* "src/Common.sol":13160:13185  shl(5, gt(x, 0xFFFFFFFF)) */
-      shl
-        /* "src/Common.sol":13199:13213  shr(factor, x) */
-      swap1
-      dup2
-      shr
-        /* "src/Common.sol":13335:13341  0xFFFF */
-      0xffff
-        /* "src/Common.sol":13329:13342  gt(x, 0xFFFF) */
-      dup2
-      gt
-        /* "src/Common.sol":13326:13327  4 */
-      0x04
-        /* "src/Common.sol":13322:13343  shl(4, gt(x, 0xFFFF)) */
-      shl
-        /* "src/Common.sol":13357:13371  shr(factor, x) */
-      swap1
-      dup2
-      shr
-        /* "src/Common.sol":13492:13496  0xFF */
-      0xff
-        /* "src/Common.sol":13486:13497  gt(x, 0xFF) */
-      dup2
-      gt
-        /* "src/Common.sol":13483:13484  3 */
-      0x03
-        /* "src/Common.sol":13479:13498  shl(3, gt(x, 0xFF)) */
-      swap1
-      dup2
-      shl
-        /* "src/Common.sol":13512:13526  shr(factor, x) */
-      swap2
-      dup3
-      shr
-        /* "src/Common.sol":13647:13650  0xF */
-      0x0f
-        /* "src/Common.sol":13641:13651  gt(x, 0xF) */
-      dup2
-      gt
-        /* "src/Common.sol":13638:13639  2 */
-      0x02
-        /* "src/Common.sol":13634:13652  shl(2, gt(x, 0xF)) */
-      shl
-        /* "src/Common.sol":13666:13680  shr(factor, x) */
-      swap1
-      dup2
-      shr
-        /* "src/Common.sol":13795:13805  gt(x, 0x3) */
-      swap2
-      dup3
-      gt
-        /* "src/Common.sol":13788:13806  shl(1, gt(x, 0x3)) */
-      dup8
-      shl
-        /* "src/Common.sol":13820:13834  shr(factor, x) */
-      swap2
-      dup3
-      shr
-        /* "src/Common.sol":13978:13988  gt(x, 0x1) */
-      swap7
-      swap1
-      swap7
-      gt
-        /* "src/Common.sol":13070:13088  or(result, factor) */
-      swap5
-      swap1
-      swap7
-      or
-        /* "src/Common.sol":13232:13250  or(result, factor) */
-      swap3
-      swap1
-      swap3
-      or
-        /* "src/Common.sol":13390:13408  or(result, factor) */
-      or
-        /* "src/Common.sol":13545:13563  or(result, factor) */
-      or
-        /* "src/Common.sol":13699:13717  or(result, factor) */
-      swap2
-      swap1
-      swap2
-      or
-        /* "src/Common.sol":13853:13871  or(result, factor) */
-      swap2
-      swap1
-      swap2
-      or
-        /* "src/Common.sol":14007:14025  or(result, factor) */
-      or
-      swap1
-        /* "src/Common.sol":12682:14033  function msb(uint256 x) pure returns (uint256 result) {... */
-      jump
-        /* "src/Common.sol":25185:25191  msb(x) */
-    tag_11:
-        /* "src/Common.sol":25178:25191  return msb(x) */
-      swap3
-        /* "src/Common.sol":25105:25198  function run(uint256 x) external pure returns (uint256 result) {... */
-      swap2
-      pop
-      pop
-      jump	// out
         /* "#utility.yul":14:194   */
     tag_6:
         /* "#utility.yul":73:79   */
@@ -243,5 +205,5 @@ sub_0: assembly {
       pop
       jump	// out
 
-    auxdata: 0xa2646970667358221220b132088ea0306a16cd733c680fe71443f3e404fc776ffdcfc6e0d72e13fde9a364736f6c634300081e0033
+    auxdata: 0xa2646970667358221220cbc4a9699b16f2a7998ac0c252a872840db3531acc0e7c5e79e97f879f6fd00764736f6c634300081e0033
 }
