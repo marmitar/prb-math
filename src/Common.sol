@@ -623,34 +623,10 @@ function sqrt(uint256 x) pure returns (uint256 result) {
     // $$
     //
     // Consequently, $2^{log_2(x) /2} is a good first approximation of sqrt(x) with at least one correct bit.
-    uint256 xAux = uint256(x);
-    result = 1;
-    if (xAux >= 2 ** 128) {
-        xAux >>= 128;
-        result <<= 64;
-    }
-    if (xAux >= 2 ** 64) {
-        xAux >>= 64;
-        result <<= 32;
-    }
-    if (xAux >= 2 ** 32) {
-        xAux >>= 32;
-        result <<= 16;
-    }
-    if (xAux >= 2 ** 16) {
-        xAux >>= 16;
-        result <<= 8;
-    }
-    if (xAux >= 2 ** 8) {
-        xAux >>= 8;
-        result <<= 4;
-    }
-    if (xAux >= 2 ** 4) {
-        xAux >>= 4;
-        result <<= 2;
-    }
-    if (xAux >= 2 ** 2) {
-        result <<= 1;
+    unchecked {
+        // ideally, we should use arithmetic operators, but solc is not smart enough to optimize `2**(msb(x)/2)`
+        /// forge-lint: disable-next-line(incorrect-shift)
+        result = 1 << (msb(x) >> 1);
     }
 
     // At this point, `result` is an estimation with at least one bit of precision. We know the true value has at
