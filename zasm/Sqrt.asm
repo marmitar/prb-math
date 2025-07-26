@@ -1,4 +1,4 @@
-    /* "src/Common.sol":24597:24713  contract Sqrt {... */
+    /* "src/Common.sol":24608:24724  contract Sqrt {... */
   mstore(0x40, 0x80)
   callvalue
   dup1
@@ -18,7 +18,7 @@ tag_1:
 stop
 
 sub_0: assembly {
-        /* "src/Common.sol":24597:24713  contract Sqrt {... */
+        /* "src/Common.sol":24608:24724  contract Sqrt {... */
       mstore(0x40, 0x80)
       callvalue
       dup1
@@ -37,7 +37,7 @@ sub_0: assembly {
       jumpi
     tag_2:
       revert(0x00, 0x00)
-        /* "src/Common.sol":24617:24711  function run(uint256 x) external pure returns (uint256 result) {... */
+        /* "src/Common.sol":24628:24722  function run(uint256 x) external pure returns (uint256 result) {... */
     tag_3:
       tag_4
       tag_5
@@ -58,7 +58,7 @@ sub_0: assembly {
       0x20
         /* "#utility.yul":318:336   */
       add
-        /* "src/Common.sol":24617:24711  function run(uint256 x) external pure returns (uint256 result) {... */
+        /* "src/Common.sol":24628:24722  function run(uint256 x) external pure returns (uint256 result) {... */
       mload(0x40)
       dup1
       swap2
@@ -66,49 +66,13 @@ sub_0: assembly {
       swap1
       return
     tag_7:
-        /* "src/Common.sol":24664:24678  uint256 result */
+        /* "src/Common.sol":24675:24689  uint256 result */
       0x00
-        /* "src/Common.sol":24697:24704  sqrt(x) */
+        /* "src/Common.sol":24708:24715  sqrt(x) */
       tag_11
-        /* "src/Common.sol":24702:24703  x */
+        /* "src/Common.sol":24713:24714  x */
       dup3
-        /* "src/Common.sol":24697:24701  sqrt */
-      tag_12
-        /* "src/Common.sol":24697:24704  sqrt(x) */
-      jump	// in
-    tag_11:
-        /* "src/Common.sol":24690:24704  return sqrt(x) */
-      swap3
-        /* "src/Common.sol":24617:24711  function run(uint256 x) external pure returns (uint256 result) {... */
-      swap2
-      pop
-      pop
-      jump	// out
-        /* "src/Common.sol":22487:24479  function sqrt(uint256 x) pure returns (uint256 result) {... */
-    tag_12:
-        /* "src/Common.sol":22526:22540  uint256 result */
-      0x00
-        /* "src/Common.sol":22552:22553  x */
-      dup2
-        /* "src/Common.sol":22557:22558  0 */
-      0x00
-        /* "src/Common.sol":22552:22558  x == 0 */
-      sub
-        /* "src/Common.sol":22548:22585  if (x == 0) {... */
-      tag_14
-      jumpi
-      pop
-        /* "src/Common.sol":22577:22578  0 */
-      0x00
-      swap2
-        /* "src/Common.sol":22487:24479  function sqrt(uint256 x) pure returns (uint256 result) {... */
-      swap1
-      pop
-      jump	// out
-        /* "src/Common.sol":22548:22585  if (x == 0) {... */
-    tag_14:
-      pop
-        /* "src/Common.sol":23530:23531  1 */
+        /* "src/Common.sol":23487:23488  1 */
       0x01
         /* "src/Common.sol":12814:12848  0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF */
       0xffffffffffffffffffffffffffffffff
@@ -213,90 +177,99 @@ sub_0: assembly {
       lt
         /* "src/Common.sol":13378:13413  or(result, lt(0x1, shr(result, x))) */
       or
-        /* "src/Common.sol":23520:23531  msb(x) >> 1 */
+        /* "src/Common.sol":23477:23488  msb(x) >> 1 */
       dup2
       shr
-        /* "src/Common.sol":23514:23532  1 << (msb(x) >> 1) */
+        /* "src/Common.sol":23471:23489  1 << (msb(x) >> 1) */
       dup2
       dup2
       shl
-        /* "src/Common.sol":24001:24015  div(x, result) */
+        /* "src/Common.sol":24012:24026  div(x, result) */
       swap1
       dup4
       swap1
       shr
-        /* "src/Common.sol":23989:24016  add(result, div(x, result)) */
+        /* "src/Common.sol":24000:24027  add(result, div(x, result)) */
       add
-        /* "src/Common.sol":23982:24017  shr(1, add(result, div(x, result))) */
+        /* "src/Common.sol":23993:24028  shr(1, add(result, div(x, result))) */
       dup2
       shr
-        /* "src/Common.sol":24055:24069  div(x, result) */
+        /* "src/Common.sol":24066:24080  div(x, result) */
       dup1
       dup4
       div
-        /* "src/Common.sol":24043:24070  add(result, div(x, result)) */
+        /* "src/Common.sol":24054:24081  add(result, div(x, result)) */
       add
-        /* "src/Common.sol":24036:24071  shr(1, add(result, div(x, result))) */
+        /* "src/Common.sol":24047:24082  shr(1, add(result, div(x, result))) */
       dup2
       shr
-        /* "src/Common.sol":24109:24123  div(x, result) */
+        /* "src/Common.sol":24120:24134  div(x, result) */
       dup1
       dup4
       div
-        /* "src/Common.sol":24097:24124  add(result, div(x, result)) */
+        /* "src/Common.sol":24108:24135  add(result, div(x, result)) */
       add
-        /* "src/Common.sol":24090:24125  shr(1, add(result, div(x, result))) */
+        /* "src/Common.sol":24101:24136  shr(1, add(result, div(x, result))) */
       dup2
       shr
-        /* "src/Common.sol":24163:24177  div(x, result) */
+        /* "src/Common.sol":24174:24188  div(x, result) */
       dup1
       dup4
       div
-        /* "src/Common.sol":24151:24178  add(result, div(x, result)) */
+        /* "src/Common.sol":24162:24189  add(result, div(x, result)) */
       add
-        /* "src/Common.sol":24144:24179  shr(1, add(result, div(x, result))) */
+        /* "src/Common.sol":24155:24190  shr(1, add(result, div(x, result))) */
       dup2
       shr
-        /* "src/Common.sol":24217:24231  div(x, result) */
+        /* "src/Common.sol":24228:24242  div(x, result) */
       dup1
       dup4
       div
-        /* "src/Common.sol":24205:24232  add(result, div(x, result)) */
+        /* "src/Common.sol":24216:24243  add(result, div(x, result)) */
       add
-        /* "src/Common.sol":24198:24233  shr(1, add(result, div(x, result))) */
+        /* "src/Common.sol":24209:24244  shr(1, add(result, div(x, result))) */
       dup2
       shr
-        /* "src/Common.sol":24271:24285  div(x, result) */
+        /* "src/Common.sol":24282:24296  div(x, result) */
       dup1
       dup4
       div
-        /* "src/Common.sol":24259:24286  add(result, div(x, result)) */
+        /* "src/Common.sol":24270:24297  add(result, div(x, result)) */
       add
-        /* "src/Common.sol":24252:24287  shr(1, add(result, div(x, result))) */
+        /* "src/Common.sol":24263:24298  shr(1, add(result, div(x, result))) */
       dup2
       shr
-        /* "src/Common.sol":24325:24339  div(x, result) */
+        /* "src/Common.sol":24336:24350  div(x, result) */
       dup1
       dup4
       div
-        /* "src/Common.sol":24313:24340  add(result, div(x, result)) */
+        /* "src/Common.sol":24324:24351  add(result, div(x, result)) */
       add
-        /* "src/Common.sol":24306:24341  shr(1, add(result, div(x, result))) */
+        /* "src/Common.sol":24317:24352  shr(1, add(result, div(x, result))) */
       swap1
       shr
-        /* "src/Common.sol":24455:24469  div(x, result) */
+        /* "src/Common.sol":24466:24480  div(x, result) */
       swap1
       dup2
       swap1
       div
-        /* "src/Common.sol":24444:24470  gt(result, div(x, result)) */
+        /* "src/Common.sol":24455:24481  gt(result, div(x, result)) */
       dup2
       gt
-        /* "src/Common.sol":24432:24471  sub(result, gt(result, div(x, result))) */
+        /* "src/Common.sol":24443:24482  sub(result, gt(result, div(x, result))) */
       swap1
       sub
       swap1
-        /* "src/Common.sol":22487:24479  function sqrt(uint256 x) pure returns (uint256 result) {... */
+        /* "src/Common.sol":22487:24490  function sqrt(uint256 x) pure returns (uint256 result) {... */
+      jump
+        /* "src/Common.sol":24708:24715  sqrt(x) */
+    tag_11:
+        /* "src/Common.sol":24701:24715  return sqrt(x) */
+      swap3
+        /* "src/Common.sol":24628:24722  function run(uint256 x) external pure returns (uint256 result) {... */
+      swap2
+      pop
+      pop
       jump	// out
         /* "#utility.yul":14:194   */
     tag_6:
@@ -314,7 +287,7 @@ sub_0: assembly {
       slt
         /* "#utility.yul":94:146   */
       iszero
-      tag_20
+      tag_19
       jumpi
         /* "#utility.yul":142:143   */
       0x00
@@ -323,7 +296,7 @@ sub_0: assembly {
         /* "#utility.yul":132:144   */
       revert
         /* "#utility.yul":94:146   */
-    tag_20:
+    tag_19:
       pop
         /* "#utility.yul":165:188   */
       calldataload
@@ -333,5 +306,5 @@ sub_0: assembly {
       pop
       jump	// out
 
-    auxdata: 0xa2646970667358221220f3e4f9f8e98710e72c84ac057e1c2330d8d91a42e8bc144cfa2af51d52228f6564736f6c634300081e0033
+    auxdata: 0xa264697066735822122008549d17942088944e2576ab43ca2a042fe8bf4ba7dc2385179c24241352ff8664736f6c634300081e0033
 }

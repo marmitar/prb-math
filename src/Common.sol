@@ -566,10 +566,6 @@ function mulDivSigned(int256 x, int256 y, int256 denominator) pure returns (int2
 /// @return result The result as a uint256.
 /// @custom:smtchecker abstract-function-nondet
 function sqrt(uint256 x) pure returns (uint256 result) {
-    if (x == 0) {
-        return 0;
-    }
-
     // For our first guess, we calculate the biggest power of 2 which is smaller than the square root of x.
     //
     // We know that the "msb" (most significant bit) of x is a power of 2 such that we have:
@@ -604,6 +600,7 @@ function sqrt(uint256 x) pure returns (uint256 result) {
     // doubles at every iteration). We thus need at most 7 iteration to turn our partial result with one bit of
     // precision into the expected uint128 result.
     assembly ("memory-safe") {
+        // note: division by zero in EVM returns zero
         result := shr(1, add(result, div(x, result)))
         result := shr(1, add(result, div(x, result)))
         result := shr(1, add(result, div(x, result)))
