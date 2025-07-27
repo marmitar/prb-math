@@ -1,10 +1,10 @@
 No files changed, compilation skipped
 Script ran successfully.
-Gas used: 3567352
+Gas used: 3524344
 
 == Logs ==
   gt() with final or()s: 264
   gt() keeping original x: 261
   lt() with final or()s: 240
   lt() keeping original x: 225
-  msb() from Common.sol: 225
+  msb() from Common.sol: 183

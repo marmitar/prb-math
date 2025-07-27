@@ -321,23 +321,44 @@ function exp2(uint256 x) pure returns (uint256 result) {
 /// @return result The index of the most significant bit as a uint256.
 /// @custom:smtchecker abstract-function-nondet
 function msb(uint256 x) pure returns (uint256 result) {
+    // from https://github.com/Lohann/openzeppelin-contracts/blob/lohann/efficient-log2-algorithm/contracts/utils/math/Math.sol
     assembly ("memory-safe") {
-        // 2^128
+        // If value has upper 128 bits set, log2 result is at least 128
         result := shl(7, lt(0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF, x))
-        // 2^64
+        // If upper 64 bits of 128-bit half set, add 64 to result
         result := or(result, shl(6, lt(0xFFFFFFFFFFFFFFFF, shr(result, x))))
-        // 2^32
+        // If upper 32 bits of 64-bit half set, add 32 to result
         result := or(result, shl(5, lt(0xFFFFFFFF, shr(result, x))))
-        // 2^16
+        // If upper 16 bits of 32-bit half set, add 16 to result
         result := or(result, shl(4, lt(0xFFFF, shr(result, x))))
-        // 2^8
+        // If upper 8 bits of 16-bit half set, add 8 to result
         result := or(result, shl(3, lt(0xFF, shr(result, x))))
-        // 2^4
+        // If upper 4 bits of 8-bit half set, add 4 to result
         result := or(result, shl(2, lt(0xF, shr(result, x))))
-        // 2^2
-        result := or(result, shl(1, lt(0x3, shr(result, x))))
-        // 2^1
-        result := or(result, lt(0x1, shr(result, x)))
+
+        // Shifts value right by the current result and use it as an index into this lookup table:
+        //
+        // | x (4 bits) |  index  | table[index] = MSB position |
+        // |------------|---------|-----------------------------|
+        // |    0000    |    0    |        table[0] = 0         |
+        // |    0001    |    1    |        table[1] = 0         |
+        // |    0010    |    2    |        table[2] = 1         |
+        // |    0011    |    3    |        table[3] = 1         |
+        // |    0100    |    4    |        table[4] = 2         |
+        // |    0101    |    5    |        table[5] = 2         |
+        // |    0110    |    6    |        table[6] = 2         |
+        // |    0111    |    7    |        table[7] = 2         |
+        // |    1000    |    8    |        table[8] = 3         |
+        // |    1001    |    9    |        table[9] = 3         |
+        // |    1010    |   10    |        table[10] = 3        |
+        // |    1011    |   11    |        table[11] = 3        |
+        // |    1100    |   12    |        table[12] = 3        |
+        // |    1101    |   13    |        table[13] = 3        |
+        // |    1110    |   14    |        table[14] = 3        |
+        // |    1111    |   15    |        table[15] = 3        |
+        //
+        // The lookup table is represented as a 32-byte value with the MSB positions for 0-15 in the last 16 bytes.
+        result := or(result, byte(shr(result, x), 0x0000010102020202030303030303030300000000000000000000000000000000))
     }
 }
 
@@ -589,25 +610,8 @@ function sqrt(uint256 x) pure returns (uint256 result) {
     // $$
     //
     // Consequently, $2^{log_2(x) /2} is a good first approximation of sqrt(x) with at least one correct bit.
-    assembly ("memory-safe") {
-        // 2^128
-        result := shl(7, lt(0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF, x))
-        // 2^64
-        result := or(result, shl(6, lt(0xFFFFFFFFFFFFFFFF, shr(result, x))))
-        // 2^32
-        result := or(result, shl(5, lt(0xFFFFFFFF, shr(result, x))))
-        // 2^16
-        result := or(result, shl(4, lt(0xFFFF, shr(result, x))))
-        // 2^8
-        result := or(result, shl(3, lt(0xFF, shr(result, x))))
-        // 2^4
-        result := or(result, shl(2, lt(0xf, shr(result, x))))
-        // 2^2
-        result := or(result, shl(1, lt(0x3, shr(result, x))))
-        // 2^1
-        result := or(result, lt(0x1, shr(result, x)))
-
-        result := shl(shr(1, result), 1)
+    unchecked {
+        result = 1 << (msb(x) >> 1);
     }
 
     // At this point, `result` is an estimation with at least one bit of precision. We know the true value has at
