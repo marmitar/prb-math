@@ -601,11 +601,13 @@ function sqrt(uint256 x) pure returns (uint256 result) {
     // all bytes that it covers:
     //
     // $$
-    // table[i] = round(1/8 sum_{t=0}^7 sqrt(8i+t))
+    // table[i] = round(1/8 sum_{t=0}^7 sqrt(256*(8i+t))) = round(16/8 sum_{t=0}^7 sqrt(8i+t))
     // $$
     //
-    // The table is encoded big-endian so `byte(i, table)` returns entry `i`. This process will produce
-    // a good initial guess for $sqrt(x)$, with at least one correct bit.
+    // The table is encoded big-endian so `byte(i, table)` returns entry `i`. The contents are multiplied
+    // by 16 to increase precision. This process will produce a very good initial guess for $sqrt(x)$,
+    // with at least two correct bits. Notice that the table holds $16 * sqrt(k)$, which must be accounted
+    // in the final result.
     assembly ("memory-safe") {
         let n := shl(7, lt(0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF, x))
         n := or(n, shl(6, lt(0xFFFFFFFFFFFFFFFF, shr(n, x))))
@@ -613,18 +615,17 @@ function sqrt(uint256 x) pure returns (uint256 result) {
         n := or(n, shl(4, lt(0xFFFF, shr(n, x))))
         n := or(n, shl(3, lt(0xFF, shr(n, x))))
 
-        let table := 0x02030405060707080809090A0A0A0B0B0B0C0C0C0D0D0D0E0E0E0F0F0F0F1010
+        let table := 0x1B3647545F69737B838B9299A0A6ACB2B7BDC2C8CDD2D6DBE0E4E9EDF1F6FAFE
         let i := shr(3, shr(n, x))
-        result := shl(shr(1, n), byte(i, table))
+        result := shr(4, shl(shr(1, n), byte(i, table)))
     }
 
-    // At this point, `result` is an estimation with at least one bit of precision. We know the true value has at
+    // At this point, `result` is an estimation with at least two bits of precision. We know the true value has at
     // most 128 bits, since it is the square root of a uint256. Newton's method converges quadratically (precision
-    // doubles at every iteration). We thus need at most 7 iterations to turn our partial result with one bit of
+    // doubles at every iteration). We thus need at most 6 iterations to turn our partial result with two bits of
     // precision into the expected uint128 result.
     assembly ("memory-safe") {
         // note: division by zero in EVM returns zero
-        result := shr(1, add(result, div(x, result)))
         result := shr(1, add(result, div(x, result)))
         result := shr(1, add(result, div(x, result)))
         result := shr(1, add(result, div(x, result)))
