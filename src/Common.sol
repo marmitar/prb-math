@@ -587,36 +587,40 @@ function mulDivSigned(int256 x, int256 y, int256 denominator) pure returns (int2
 /// @return result The result as a uint256.
 /// @custom:smtchecker abstract-function-nondet
 function sqrt(uint256 x) pure returns (uint256 result) {
-    // For our first guess, we calculate the biggest power of 2 which is smaller than the square root of x.
+    // For our first guess, we find the most significant *byte* of x and use its value and position
+    // to approximate the square root of x.
     //
-    // We know that the "msb" (most significant bit) of x is a power of 2 such that we have:
+    // For this, we want to find $k \in [0,255]$ and $n \in {0,8,...,248}$ such that $x \approx k 2^n$.
+    // We can find $n$ by doing five steps of the `msb()` algorithm ($n = 8 floor(msb(x) / 8)$), and
+    // then we also have $k = floor(x / 2^n)$.
     //
-    // $$
-    // msb(x) <= x <= 2*msb(x)$
-    // $$
-    //
-    // We write $msb(x)$ as $2^k$, and we get:
-    //
-    // $$
-    // k = log_2(x)
-    // $$
-    //
-    // Thus, we can write the initial inequality as:
+    // Once we have those values, the square root can be approximated by $sqrt(x) \approx sqrt(k 2^n) =
+    // sqrt(k) 2^{n/2}$. For $sqrt(k)$, we use a lookup table that fits in a 32-byte word, which means
+    // that we'll need to use the top 5 bits of $k$ for indexing, instead of the full 8 bits, so
+    // $i = k >> 3$. Because of this, each position in the table must have the average square root for
+    // all bytes that it covers:
     //
     // $$
-    // 2^{log_2(x)} <= x <= 2*2^{log_2(x)+1} \\
-    // sqrt(2^k) <= sqrt(x) < sqrt(2^{k+1}) \\
-    // 2^{k/2} <= sqrt(x) < 2^{(k+1)/2} <= 2^{(k/2)+1}
+    // table[i] = round(1/8 sum_{t=0}^7 sqrt(8i+t))
     // $$
     //
-    // Consequently, $2^{log_2(x) /2} is a good first approximation of sqrt(x) with at least one correct bit.
-    unchecked {
-        result = 1 << (msb(x) >> 1);
+    // The table is encoded big-endian so `byte(i, table)` returns entry `i`. This process will produce
+    // a good initial guess for $sqrt(x)$, with at least one correct bit.
+    assembly ("memory-safe") {
+        let n := shl(7, lt(0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF, x))
+        n := or(n, shl(6, lt(0xFFFFFFFFFFFFFFFF, shr(n, x))))
+        n := or(n, shl(5, lt(0xFFFFFFFF, shr(n, x))))
+        n := or(n, shl(4, lt(0xFFFF, shr(n, x))))
+        n := or(n, shl(3, lt(0xFF, shr(n, x))))
+
+        let table := 0x02030405060707080809090A0A0A0B0B0B0C0C0C0D0D0D0E0E0E0F0F0F0F1010
+        let i := shr(3, shr(n, x))
+        result := shl(shr(1, n), byte(i, table))
     }
 
     // At this point, `result` is an estimation with at least one bit of precision. We know the true value has at
     // most 128 bits, since it is the square root of a uint256. Newton's method converges quadratically (precision
-    // doubles at every iteration). We thus need at most 7 iteration to turn our partial result with one bit of
+    // doubles at every iteration). We thus need at most 7 iterations to turn our partial result with one bit of
     // precision into the expected uint128 result.
     assembly ("memory-safe") {
         // note: division by zero in EVM returns zero

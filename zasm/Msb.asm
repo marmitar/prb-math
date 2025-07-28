@@ -1,4 +1,4 @@
-    /* "src/Common.sol":26145:26259  contract Msb {... */
+    /* "src/Common.sol":26970:27084  contract Msb {... */
   mstore(0x40, 0x80)
   callvalue
   dup1
@@ -18,7 +18,7 @@ tag_1:
 stop
 
 sub_0: assembly {
-        /* "src/Common.sol":26145:26259  contract Msb {... */
+        /* "src/Common.sol":26970:27084  contract Msb {... */
       mstore(0x40, 0x80)
       callvalue
       dup1
@@ -37,7 +37,7 @@ sub_0: assembly {
       jumpi
     tag_2:
       revert(0x00, 0x00)
-        /* "src/Common.sol":26164:26257  function run(uint256 x) external pure returns (uint256 result) {... */
+        /* "src/Common.sol":26989:27082  function run(uint256 x) external pure returns (uint256 result) {... */
     tag_3:
       tag_4
       tag_5
@@ -58,7 +58,7 @@ sub_0: assembly {
       0x20
         /* "#utility.yul":318:336   */
       add
-        /* "src/Common.sol":26164:26257  function run(uint256 x) external pure returns (uint256 result) {... */
+        /* "src/Common.sol":26989:27082  function run(uint256 x) external pure returns (uint256 result) {... */
       mload(0x40)
       dup1
       swap2
@@ -66,11 +66,11 @@ sub_0: assembly {
       swap1
       return
     tag_7:
-        /* "src/Common.sol":26211:26225  uint256 result */
+        /* "src/Common.sol":27036:27050  uint256 result */
       0x00
-        /* "src/Common.sol":26244:26250  msb(x) */
+        /* "src/Common.sol":27069:27075  msb(x) */
       tag_11
-        /* "src/Common.sol":26248:26249  x */
+        /* "src/Common.sol":27073:27074  x */
       dup3
         /* "src/Common.sol":15170:15236  0x0000010102020202030303030303030300000000000000000000000000000000 */
       0x010102020202030303030303030300000000000000000000000000000000
@@ -164,11 +164,11 @@ sub_0: assembly {
       swap1
         /* "src/Common.sol":12682:15246  function msb(uint256 x) pure returns (uint256 result) {... */
       jump
-        /* "src/Common.sol":26244:26250  msb(x) */
+        /* "src/Common.sol":27069:27075  msb(x) */
     tag_11:
-        /* "src/Common.sol":26237:26250  return msb(x) */
+        /* "src/Common.sol":27062:27075  return msb(x) */
       swap3
-        /* "src/Common.sol":26164:26257  function run(uint256 x) external pure returns (uint256 result) {... */
+        /* "src/Common.sol":26989:27082  function run(uint256 x) external pure returns (uint256 result) {... */
       swap2
       pop
       pop
@@ -208,5 +208,5 @@ sub_0: assembly {
       pop
       jump	// out
 
-    auxdata: 0xa26469706673582212207c2f1c0d77c104a27cd83e47c0e2bb8e5e0e94129aae81d7e49c5742f0922f9664736f6c634300081e0033
+    auxdata: 0xa2646970667358221220171c65eb80b5d650633fd4eea6586ed61cca8b74b4ba6bca459234522d21840464736f6c634300081e0033
 }
